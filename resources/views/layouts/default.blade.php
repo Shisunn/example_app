@@ -1,0 +1,6 @@
+@include('partials.header')
+@include('partials.nav')
+@yield('slider')
+@yield('content')
+@yield('brands')
+@include('partials.footer')
