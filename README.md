@@ -71,7 +71,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 `git clone https://github.com/Shisunn/example_app` \
 if php requirement is not fulfill -> `sudo apt-get install php-xml` \
 `composer install` \
-`php artisan key:generate` \ 
-`php artisan serve` \
-** DOCKER ** \ 
+`php artisan key:generate`  \ 
+`php artisan serve`  \
+**DOCKER**  \ 
 check port then config on xampp
