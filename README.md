@@ -63,11 +63,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Cloning
 `git clone https://github.com/Shisunn/example_app` \
-`composer install`\
-`php artisan key:generate`\
-`php artisan serve`
+```
+ cp .env.bak .env
+ composer install
+ php artisan key:generate
+ php artisan serve
+```
 
-## Unix
+## Unix (mysql refuse to connect for now)
 `git clone https://github.com/Shisunn/example_app` \
 if php requirement is not fulfill -> `sudo apt-get install php-xml` \
 ```
