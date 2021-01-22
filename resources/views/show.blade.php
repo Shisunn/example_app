@@ -216,7 +216,7 @@
                         <div class="card-body">
                             <a href="/show" class="h3 text-decoration-none">{{$relate['title']}}</a>
                             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>{{$relate['size']}}</li>
+                                <li> @php echo(str_replace(",","/",$relate['size'])) @endphp </li>
                                 <li class="pt-2">
                                     <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                                     <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
@@ -227,10 +227,10 @@
                             </ul>
                             <ul class="list-unstyled d-flex justify-content-center mb-1">
                                 <li>
-                                @for($i = 0; $i < $relate['star']; $i++)
+                                @for($i = 0; $i < $relate['rating']; $i++)
                                     <i class="text-warning fa fa-star"></i>
                                 @endfor
-                                @for($i =0; $i < $relate['nostar']; $i++)
+                                @for($i = (5 - $relate['rating']); $i >0; $i--)
                                     <i class="text-muted fa fa-star"></i>
                                 @endfor
                                 </li>
