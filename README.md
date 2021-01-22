@@ -62,7 +62,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Cloning
-git clone https://github.com/Shisunn/example_app \
-composer install\
-php artisan key:generate\
-php artisan serve
+`git clone https://github.com/Shisunn/example_app` \
+`composer install`\
+`php artisan key:generate`\
+`php artisan serve`
+
+## Unix
+`git clone https://github.com/Shisunn/example_app` \
+if php requirement is not fulfill -> `sudo apt-get install php-xml` \
+`composer install` \
+`php artisan key:generate` \ 
+`php artisan serve` \
+** DOCKER ** \ 
+check port then config on xampp
