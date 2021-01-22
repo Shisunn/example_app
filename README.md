@@ -76,4 +76,4 @@ php artisan key:generate
 php artisan serve
 ```
 **DOCKER** \
-check port then config on xampp
+check port then config on xampp ex: (mysql 3306 -> 3307, apache 80 -> 8080)
