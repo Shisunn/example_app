@@ -63,11 +63,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Cloning
 ` git clone https://github.com/Shisunn/example_app ` \
-vertify php version 7.3 or higher
+vertify php version 7.3 or higher\
+DB= example_app
 ```
  cp .env.bak .env
- composer update
- composer install
+ composer update || composer install
  php artisan key:generate
  php artisan serve
 ```
@@ -80,5 +80,5 @@ composer install
 php artisan key:generate
 php artisan serve
 ```
-**DOCKER** \
+**DOCKER**
 check port then config on xampp ex: (mysql 3306 -> 3307, apache 80 -> 8080)
