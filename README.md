@@ -77,6 +77,7 @@ DB= example_app
 if php requirement is not fulfill -> `sudo apt-get install php7.3` \
 ```
 sudo apt-get update
+cp .env.bak .env (user,password)
 sudo apt-get install composer
 composer update
 composer install
