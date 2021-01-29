@@ -19,6 +19,8 @@ class CreateTableSlider extends Migration
             $table->string('sub_title');
             $table->string('text');
             $table->string('image');
+            $table->boolean('active');
+            $table->unsignedSmallInteger('order');
             $table->timestamps();
         });
     }

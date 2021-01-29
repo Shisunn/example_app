@@ -10,7 +10,7 @@ class showController extends Controller
     public function show()
     {
         $related = related::all();
-        return view('/show', compact('related'));
+        return view('show', compact('related'));
 
     }
 }

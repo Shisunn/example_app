@@ -8,7 +8,6 @@ use App\Models\slider;
 
 class indexController extends Controller
 {
-    //
     public function index()
     {
         $sliders = slider::all();

@@ -23,6 +23,6 @@ Route::get('show', 'showController@show');
 
 Route::get('/contact', fn() => view('contact'));
 
-// Route::get('/{id}', fn($id) =>
-//     view('lylay')
-// );
+Route::get('/administrators', fn() => view('admin.index'));
+
+Route::get('/administrators/slider', 'sliderController@index');
