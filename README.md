@@ -73,7 +73,10 @@ DB= example_app
 ```
 
 ## Unix (mysql refuse to connect for now)
-`git clone https://github.com/Shisunn/example_app` \
+```
+git clone https://github.com/Shisunn/example_app
+git clone --single-branch --branch <branchname> https://github.com/Shisunn/example_app
+```
 if php requirement is not fulfill -> `sudo apt-get install php7.3` \
 ```
 sudo apt-get update
