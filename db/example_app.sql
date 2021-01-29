@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 22, 2021 at 06:01 PM
+-- Generation Time: Jan 29, 2021 at 10:32 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `migrations`
@@ -118,7 +118,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2021_01_22_080036_create_table_slider', 1),
 (9, '2021_01_22_083503_create_table_cat_months', 2),
 (10, '2021_01_22_083525_create_table_features', 2),
-(11, '2021_01_22_090644_create_table_related', 3);
+(11, '2021_01_22_090644_create_table_related', 3),
+(12, '2021_01_26_083939_test', 4);
 
 -- --------------------------------------------------------
 
@@ -184,19 +185,30 @@ CREATE TABLE IF NOT EXISTS `sliders` (
   `sub_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `order` smallint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `sliders`
 --
 
-INSERT INTO `sliders` (`id`, `title`, `sub_title`, `text`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Zay eCommerce', 'Tiny and Perfect eCommerce Template', 'Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). This template is 100% free provided by <a rel=\"sponsored\" class=\"text-success\" href=\"https://templatemo.com\" target=\"_blank\">TemplateMo</a> website.', 'banner_img_01.jpg', NULL, NULL),
-(2, 'Proident occaecat', 'Proident occaecat', 'You are permitted to use this Zay CSS template for your commercial websites. You are not permitted to re-distribute the template ZIP file in any kind of template collection websites. ', 'banner_img_02.jpg', NULL, NULL),
-(3, 'Repr in voluptate', 'Ullamco laboris nisi ut ', 'We bring you 100% free CSS templates for your websites. If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.', 'banner_img_03.jpg', NULL, NULL);
+INSERT INTO `sliders` (`id`, `title`, `sub_title`, `text`, `image`, `active`, `order`, `created_at`, `updated_at`) VALUES
+(1, 'Zay eCommerce', 'Tiny and Perfect eCommerce Template', 'Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). This template is 100% free provided by TemplateMo website.', 'banner_img_01.jpg', 1, 1, NULL, NULL),
+(2, 'Proident occaecat', 'Proident occaecat', 'You are permitted to use this Zay CSS template for your commercial websites. You are not permitted to re-distribute the template ZIP file in any kind of template collection websites. ', 'banner_img_02.jpg', 1, 2, NULL, NULL),
+(3, 'Repr in voluptate', 'Ullamco laboris nisi ut ', 'We bring you 100% free CSS templates for your websites. If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.', 'banner_img_03.jpg', 1, 3, NULL, NULL),
+(4, 'Zay eCommerce', 'Tiny and Perfect eCommerce Template', 'Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). This template is 100% free provided by TemplateMo website.', 'banner_img_01.jpg', 1, 4, NULL, NULL),
+(5, 'Proident occaecat', 'Proident occaecat', 'You are permitted to use this Zay CSS template for your commercial websites. You are not permitted to re-distribute the template ZIP file in any kind of template collection websites. ', 'banner_img_02.jpg', 1, 5, NULL, NULL),
+(6, 'Repr in voluptate', 'Ullamco laboris nisi ut ', 'We bring you 100% free CSS templates for your websites. If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.', 'banner_img_03.jpg', 1, 6, NULL, NULL),
+(7, 'Zay eCommerce', 'Tiny and Perfect eCommerce Template', 'Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). This template is 100% free provided by TemplateMo website.', 'banner_img_01.jpg', 1, 7, NULL, NULL),
+(8, 'Proident occaecat', 'Proident occaecat', 'You are permitted to use this Zay CSS template for your commercial websites. You are not permitted to re-distribute the template ZIP file in any kind of template collection websites. ', 'banner_img_02.jpg', 1, 8, NULL, NULL),
+(9, 'Repr in voluptate', 'Ullamco laboris nisi ut ', 'We bring you 100% free CSS templates for your websites. If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.', 'banner_img_03.jpg', 1, 9, NULL, NULL),
+(10, 'Zay eCommerce', 'Tiny and Perfect eCommerce Template', 'Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). This template is 100% free provided by TemplateMo website.', 'banner_img_01.jpg', 1, 10, NULL, NULL),
+(11, 'Proident occaecat', 'Proident occaecat', 'You are permitted to use this Zay CSS template for your commercial websites. You are not permitted to re-distribute the template ZIP file in any kind of template collection websites. ', 'banner_img_02.jpg', 1, 11, NULL, NULL),
+(12, 'Repr in voluptate', 'Ullamco laboris nisi ut ', 'We bring you 100% free CSS templates for your websites. If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.', 'banner_img_03.jpg', 1, 12, NULL, NULL);
 
 -- --------------------------------------------------------
 

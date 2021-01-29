@@ -6,9 +6,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="d-flex justify-content-between col-12">
+                <div class="d-flex justify-content-between align-items-center col-12">
                     <h1>Slider</h1>
-                    <button class="btn btn-primary h-25 align-self-baseline">Add New</button>
+                    <button class="btn btn-primary">Add New</button>
                 </div>
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
