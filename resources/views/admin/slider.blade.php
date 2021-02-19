@@ -10,6 +10,9 @@
                     <h1>Slider</h1>
                     <button class="btn btn-primary">Add New</button>
                 </div>
+                @if(session('status'))
+                <p id="message" class="alert alert-success"> {{ session('status') }} </p>
+                @endif
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -32,8 +35,25 @@
                                 <a href="#"><span><i class="far fa-eye-slash"></i></span></a>
                                 <a href="#"><span><i class="fas fa-pen"></i></span></a>
                                 <a href="#"><span><i class="fas fa-arrow-down"></i></span></a>
-                                <a href="#"><span><i class="fas fa-times-circle"></i></span></a>
+                                <a id="deletion" href="{{route('slider.delete',$slider->id)}}" data-toggle="modal" data-target="#myModal"><span><i class="fas fa-times-circle"></i></span></a>
                             </td>
+                            <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="modalTitle">Are you sure you want to delete this item?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="return confirmation();">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
                         </tr>
                         @endforeach
                     </tbody>
@@ -75,5 +95,6 @@
         });
     });
 </script>
+<script src="/assets/js/admin.js"></script>
 
 @endsection

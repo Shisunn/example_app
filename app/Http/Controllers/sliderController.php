@@ -11,4 +11,11 @@ class sliderController extends Controller
         $sliders = slider::all();
         return view('admin.slider', compact('sliders'));
     }
+
+    public function destroy($id)
+    {
+        $slider = slider::findOrFail($id);
+        $slider->delete();
+        return redirect()->back()->with('status', 'Delete successfully!');
+    }
 }

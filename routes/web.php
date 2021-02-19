@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\sliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,5 @@ Route::get('/contact', fn() => view('contact'));
 Route::get('/administrators', fn() => view('admin.index'));
 
 Route::get('/administrators/slider', 'sliderController@index');
+
+Route::get('/administrators/slider/{id}/delete', [sliderController::class, 'destroy'])->name('slider.delete');
