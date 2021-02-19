@@ -35,9 +35,11 @@
                                 <a href="#"><span><i class="far fa-eye-slash"></i></span></a>
                                 <a href="#"><span><i class="fas fa-pen"></i></span></a>
                                 <a href="#"><span><i class="fas fa-arrow-down"></i></span></a>
-                                <a id="deletion" href="{{route('slider.delete',$slider->id)}}" data-toggle="modal" data-target="#myModal"><span><i class="fas fa-times-circle"></i></span></a>
+                                <a class="deletion" href="{{route('slider.delete',$slider->id)}}" data-toggle="modal" data-target="#myModal"><span><i class="fas fa-times-circle"></i></span></a>
                             </td>
-                            <!-- Modal -->
+                        </tr>
+                        @endforeach
+<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -48,14 +50,12 @@
         </button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" onclick="return confirmation();">Yes</button>
+        <button type="button" class="btn btn-danger" id="deleteBtn">Yes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
 </div>
-                        </tr>
-                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
