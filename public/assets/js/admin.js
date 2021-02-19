@@ -1,5 +1,6 @@
 let url = '';
 
+
 // JQUERY
 
 $('.deletion').click(function () {
