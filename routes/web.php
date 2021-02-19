@@ -22,7 +22,7 @@ Route::get('/shop', fn() => view('shop'));
 
 Route::get('show', 'showController@show');
 
-Route::get('/contact', fn() => view('contact'));
+Route::view('/contact', 'contact');
 
 Route::get('/administrators', fn() => view('admin.index'));
 
