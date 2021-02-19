@@ -9,7 +9,7 @@ class sliderController extends Controller
     public function index()
     {
         $sliders = slider::all();
-        return view('admin.slider', ['slider' => $sliders]);
+        return view('admin.slider', ['sliders' => $sliders]);
     }
 
     public function destroy($id)
