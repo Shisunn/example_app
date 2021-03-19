@@ -26,6 +26,16 @@ Route::view('/contact', 'contact');
 
 Route::get('/administrators', fn() => view('admin.index'));
 
-Route::get('/administrators/slider', 'sliderController@index');
+Route::get('/administrators/slider', 'sliderController@index')->name('slider');
+
+Route::post('/administrators/slider', 'sliderController@store');
 
 Route::get('/administrators/slider/{id}/delete', [sliderController::class, 'destroy'])->name('slider.delete');
+
+Route::get('/administrators/slider/{id}/active', [sliderController::class, 'active'])->name('slider.active');
+
+Route::get('/administrators/slider/{id}/moveUp', [sliderController::class, 'moveUp'])->name('slider.moveUp');
+
+Route::get('/administrators/slider/{id}/moveDown', [sliderController::class, 'moveDown'])->name('slider.moveDown');
+
+Route::get('/admin/slider/new', 'sliderController@form')->name('new_slider');

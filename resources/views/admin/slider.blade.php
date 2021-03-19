@@ -8,10 +8,16 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center col-12">
                     <h1>Slider</h1>
-                    <button class="btn btn-primary">Add New</button>
+                    <a href="{{ route('new_slider') }}" class="btn btn-primary">Add New</a>
                 </div>
-                @if(session('status'))
-                <p id="message" class="alert alert-success"> {{ session('status') }} </p>
+                @if(session('delete'))
+                <p id="message" class="alert alert-success"> {{ session('delete') }} </p>
+                @endif
+                @if(session('empty'))
+                <p id="message" class="alert text-muted"> {{ session('empty') }} </p>
+                @endif
+                @if(session('active'))
+                <p id="message" class="alert text-info"> {{ session('active') }} </p>
                 @endif
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
@@ -31,10 +37,10 @@
                             <td>{{ $slider['sub_title'] }}</td>
                             <td>{{ $slider['text'] }}</td>
                             <td>
-                                <a href="#"><span><i class="fas fa-arrow-up"></i></span></a>
-                                <a href="#"><span><i class="far fa-eye-slash"></i></span></a>
+                                <a href="{{ route('slider.moveUp', $slider->id) }}"><span><i class="fas fa-arrow-up"></i></span></a>
+                                <a href="{{ route('slider.active',$slider->id) }}"><span><i class="far @if($slider->active == 1) fa-eye-slash @else fa-eye @endif"></i></span></a>
                                 <a href="#"><span><i class="fas fa-pen"></i></span></a>
-                                <a href="#"><span><i class="fas fa-arrow-down"></i></span></a>
+                                <a href="{{ route('slider.moveDown', $slider->id) }}"><span><i class="fas fa-arrow-down"></i></span></a>
                                 <a class="deletion" href="{{route('slider.delete',$slider->id)}}" data-toggle="modal" data-target="#myModal"><span><i class="fas fa-times-circle"></i></span></a>
                             </td>
                         </tr>

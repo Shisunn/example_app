@@ -10,7 +10,7 @@ class indexController extends Controller
 {
     public function index()
     {
-        $sliders = slider::all();
+        $sliders = slider::where('active', 1)->orderBy('order')->get();
         $cat_months = cat_months::all();
         $features = features::all();
         return view('index', compact('sliders', 'cat_months', 'features'));
