@@ -18,6 +18,22 @@ class sliderController extends Controller
         $anotherSlider->save();
     }
 
+    private function saveImage(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->image;
+            $image_name = str_replace('.' . $image->extension(), '', $image->getClientOriginalName()) . time() . '.' . $image->extension();
+            $destination = public_path('assets/admin/dist/img/slider/thumbnail');
+            $img = Image::make($image->path());
+            $img->resize(100, 100, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destination . '/' . $image_name);
+            //save original
+            $destination = public_path('assets/admin/dist/img/slider');
+            $path = $image->move($destination, $image_name);
+            return $image_name;
+        }
+    }
     public function index()
     {
         $sliders = slider::orderBy('order')->get();
@@ -28,7 +44,7 @@ class sliderController extends Controller
     {
         $slider = slider::findOrFail($id);
         $slider->delete();
-        return redirect()->back()->with('delete', 'Delete successfully!');
+        return redirect()->back()->with('success', 'Delete successfully!');
     }
 
     public function active($id)
@@ -42,7 +58,7 @@ class sliderController extends Controller
             $action = 'enabled';
         }
         $slider->save();
-        return redirect()->back()->with('active', 'Slider has been successfully ' . $action);
+        return redirect()->back()->with('success', 'Slider has been successfully ' . $action);
 
     }
 
@@ -60,7 +76,7 @@ class sliderController extends Controller
             $this->ChangeOrder($current_order, $previous_order, $current_slider, $previous_slider);
             return redirect()->back();
         } else {
-            return redirect()->back()->with('empty', 'No previous slider found');
+            return redirect()->back()->with('fail', 'No previous slider found');
         }
     }
 
@@ -78,11 +94,11 @@ class sliderController extends Controller
             $this->ChangeOrder($current_order, $next_order, $current_slider, $next_slider);
             return redirect()->back();
         } else {
-            return redirect()->back()->with('empty', 'No next slider found');
+            return redirect()->back()->with('fail', 'No next slider found');
         }
     }
 
-    public function form()
+    public function create()
     {
         $sliders = slider::select('order')->orderBy('order')->get();
         return view('admin.slider_new', ['sliders' => $sliders]);
@@ -99,7 +115,7 @@ class sliderController extends Controller
             'sub_title' => 'required|string|max:255',
             'content' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,webp|max:2048',
-            'order' => 'integer',
+            'order' => 'required|integer',
         ]);
 
         if ($request->active == null) {
@@ -109,16 +125,7 @@ class sliderController extends Controller
         }
 
         //resize image
-        $image = $request->image;
-        $image_name = str_replace('.' . $image->extension(), '', $image->getClientOriginalName()) . time() . '.' . $image->extension();
-        $destination = public_path('assets/admin/dist/img/slider/thumbnail');
-        $img = Image::make($image->path());
-        $img->resize(100, 100, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destination . '/' . $image_name);
-        //save original
-        $destination = public_path('assets/admin/dist/img/slider');
-        $path = $image->move($destination, $image_name);
+        $image_name = $this->saveImage($request);
         slider::Create([
             'title' => $request->title,
             'sub_title' => $request->sub_title,
@@ -128,7 +135,45 @@ class sliderController extends Controller
             'order' => $request->order,
         ]);
 
-        return redirect()->route('slider');
+        return redirect()->route('sliders.index')->with('success', 'Successfully added to database');
 
+    }
+
+    public function edit($id)
+    {
+        $slider = slider::where('id', $id)->get();
+        $order = slider::select('order')->orderBy('order')->get();
+        return view('admin.slider_edit', ['slider' => $slider, 'order' => $order]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required|string|max:255',
+            'sub_title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,webp|max:2048',
+            'order' => 'integer',
+        ]);
+
+        if ($request->active == null) {
+            $active = 0;
+        } else {
+            $active = 1;
+        }
+
+        $slider = slider::findOrFail($id);
+        $slider->title = $request->title;
+        $slider->sub_title = $request->sub_title;
+        $slider->text = $request->content;
+        $image_name = $this->saveImage($request);
+        if ($image_name) {
+            $slider->image = $image_name;
+        }
+        $slider->order = $request->order;
+        $slider->active = $active;
+        $slider->save();
+
+        return redirect()->route('sliders.index')->with('success', 'Update successfully');
     }
 }

@@ -1,4 +1,5 @@
 /node_modules
+/assets/admin/dist/img
 /public/hot
 /public/storage
 /storage/*.key
