@@ -33,7 +33,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/administrators/slider" class="nav-link {{request()->is('administrators/slider')? 'active' : ''}}">
+            <a href="{{route('sliders.index')}}" class="nav-link {{request()->is('administrators/sliders')? 'active' : ''}}">
               <i class="nav-icon far fa-images"></i>
               <p>
                 Slideshow

@@ -1,6 +1,5 @@
 @extends('admin.layouts.default')
 @section('content')
-
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -8,16 +7,13 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center col-12">
                     <h1>Slider</h1>
-                    <a href="{{ route('new_slider') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('sliders.create') }}" class="btn btn-primary">Add New</a>
                 </div>
-                @if(session('delete'))
-                <p id="message" class="alert alert-success"> {{ session('delete') }} </p>
+                @if(session('success'))
+                <p id="message" class="alert alert-success"> {{ session('success') }} </p>
                 @endif
-                @if(session('empty'))
+                @if(session('fail'))
                 <p id="message" class="alert text-muted"> {{ session('empty') }} </p>
-                @endif
-                @if(session('active'))
-                <p id="message" class="alert text-info"> {{ session('active') }} </p>
                 @endif
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
@@ -37,31 +33,36 @@
                             <td>{{ $slider['sub_title'] }}</td>
                             <td>{{ $slider['text'] }}</td>
                             <td>
-                                <a href="{{ route('slider.moveUp', $slider->id) }}"><span><i class="fas fa-arrow-up"></i></span></a>
-                                <a href="{{ route('slider.active',$slider->id) }}"><span><i class="far @if($slider->active == 1) fa-eye-slash @else fa-eye @endif"></i></span></a>
-                                <a href="#"><span><i class="fas fa-pen"></i></span></a>
-                                <a href="{{ route('slider.moveDown', $slider->id) }}"><span><i class="fas fa-arrow-down"></i></span></a>
-                                <a class="deletion" href="{{route('slider.delete',$slider->id)}}" data-toggle="modal" data-target="#myModal"><span><i class="fas fa-times-circle"></i></span></a>
+                                <a href="{{ route('sliders.moveUp', $slider) }}"><span><i class="fas fa-arrow-up"></i></span></a>
+                                <a href="{{ route('sliders.active',$slider) }}"><span><i class="far @if($slider->active == 1) fa-eye-slash @else fa-eye @endif"></i></span></a>
+                                <a href="{{ route('sliders.edit', $slider) }}"><span><i class="fas fa-pen"></i></span></a>
+                                <a href="{{ route('sliders.moveDown', $slider) }}"><span><i class="fas fa-arrow-down"></i></span></a>
+                                <a class="deletion" href="#" data-toggle="modal" data-target="#myModal"><span><i class="fas fa-times-circle"></i></span></a>
                             </td>
-                        </tr>
-                        @endforeach
+                            
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-danger">
-        <h5 class="modal-title text-white" id="modalTitle">Are you sure you want to delete this item?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="deleteBtn">Yes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-danger">
+          <h5 class="modal-title text-white" id="modalTitle">Are you sure you want to delete this item?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+            <form action="{{route('sliders.destroy',$slider->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" class="btn btn-danger" id="deleteBtn" value="Yes">
+            </form>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>

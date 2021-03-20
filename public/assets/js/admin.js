@@ -3,15 +3,15 @@ let url = '';
 
 // JQUERY
 
-$('.deletion').click(function () {
-   url = $(this).attr('href');
-   return url;
-});
+// $('.deletion').click(function () {
+//    url = $(this).attr('href');
+//    return url;
+// });
 
 
-$('#deleteBtn').click(function(){
-    window.location.href = url;
-});
+// $('#deleteBtn').click(function(){
+//     window.location.href = url;
+// });
 
 // VANILLA JS
 

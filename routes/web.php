@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\indexController;
+use App\Http\Controllers\showController;
 use App\Http\Controllers\sliderController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,28 +16,32 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', 'indexController@index');
+Route::get('/', [indexController::class, 'index']);
 
 Route::get('/about', fn() => view('about'));
 
 Route::get('/shop', fn() => view('shop'));
 
-Route::get('show', 'showController@show');
+Route::get('show', [showController::class, 'show']);
 
 Route::view('/contact', 'contact');
 
 Route::get('/administrators', fn() => view('admin.index'));
 
-Route::get('/administrators/slider', 'sliderController@index')->name('slider');
+Route::resource('/administrators/sliders', sliderController::class)->parameters([
+    'sliders' => 'id',
+]);
 
-Route::post('/administrators/slider', 'sliderController@store');
+// Route::get('/administrators/slider', 'sliderController@index')->name('slider');
 
-Route::get('/administrators/slider/{id}/delete', [sliderController::class, 'destroy'])->name('slider.delete');
+// Route::post('/administrators/slider', 'sliderController@store');
 
-Route::get('/administrators/slider/{id}/active', [sliderController::class, 'active'])->name('slider.active');
+// Route::delete('/administrators/slider/{id}', [sliderController::class, 'destroy'])->name('slider.delete');
 
-Route::get('/administrators/slider/{id}/moveUp', [sliderController::class, 'moveUp'])->name('slider.moveUp');
+Route::get('/administrators/slider/{id}/active', [sliderController::class, 'active'])->name('sliders.active');
 
-Route::get('/administrators/slider/{id}/moveDown', [sliderController::class, 'moveDown'])->name('slider.moveDown');
+Route::get('/administrators/slider/{id}/moveUp', [sliderController::class, 'moveUp'])->name('sliders.moveUp');
 
-Route::get('/admin/slider/new', 'sliderController@form')->name('new_slider');
+Route::get('/administrators/slider/{id}/moveDown', [sliderController::class, 'moveDown'])->name('sliders.moveDown');
+
+// Route::get('/administrators/slider/new', [sliderController::class, 'form'])->name('new_slider');
