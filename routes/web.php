@@ -32,12 +32,6 @@ Route::resource('/administrators/sliders', sliderController::class)->parameters(
     'sliders' => 'id',
 ]);
 
-// Route::get('/administrators/slider', 'sliderController@index')->name('slider');
-
-// Route::post('/administrators/slider', 'sliderController@store');
-
-// Route::delete('/administrators/slider/{id}', [sliderController::class, 'destroy'])->name('slider.delete');
-
 Route::get('/administrators/slider/{id}/active', [sliderController::class, 'active'])->name('sliders.active');
 
 Route::get('/administrators/slider/{id}/moveUp', [sliderController::class, 'moveUp'])->name('sliders.moveUp');
