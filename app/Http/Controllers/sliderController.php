@@ -18,7 +18,8 @@ class sliderController extends Controller
         $anotherSlider->save();
     }
 
-    public function ind
+    public function index()
+    {
         $sliders = slider::orderBy('order')->get();
         return view('admin.slider', ['sliders' => $sliders]);
     }
